@@ -18,6 +18,7 @@
     "mongoose": "^6.7.2"
   },
   "devDependencies": {
+    "bcryptjs": "^2.4.3",
     "concurrently": "^7.5.0",
     "nodemon": "^2.0.20"
   }
