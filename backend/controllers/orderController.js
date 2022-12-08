@@ -31,4 +31,22 @@ export default class OrderController {
       return next(err);
     }
   }
+
+  // @desc    Get order by ID
+  // @route   GET /api/orders/:id
+  // @access  Private
+  static async getOrderById(req, res, next) {
+    try {
+      const order = await Order.findById(req.params.id).populate('user', 'name email');
+
+      if (order) {
+        res.status(200).json(order);
+      } else {
+        res.status(404);
+        throw new Error('Order not found');
+      }
+    } catch (err) {
+      return next(err);
+    }
+  }
 }
