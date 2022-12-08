@@ -5,6 +5,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import Message from '../components/Message';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { placeOrder } from '../actions/orderActions';
+import { addDecimals, formatAddress } from '../utils';
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
@@ -141,15 +142,6 @@ const PlaceOrderScreen = () => {
       </Row>
     </div>
   );
-};
-
-const formatAddress = (fromAddress) => {
-  const { address, city, postalCode, country } = fromAddress;
-  return `${address}, ${city} ${postalCode},  ${country}`;
-};
-
-const addDecimals = (number) => {
-  return (Math.round(number * 100) / 100).toFixed(2);
 };
 
 export default PlaceOrderScreen;
