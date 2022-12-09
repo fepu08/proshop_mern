@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../actions/userActions';
 import { NavLink } from 'react-router-dom';
@@ -9,8 +10,11 @@ const Header = () => {
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
+  const navigate = useNavigate();
+
   const logoutHandler = (e) => {
     dispatch(logout());
+    navigate('/');
   };
 
   return (
