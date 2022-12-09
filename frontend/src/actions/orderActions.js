@@ -33,7 +33,7 @@ export const placeOrder = (order) => async (dispatch, getState) => {
       payload: data,
     });
 
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
+    localStorage.removeItem('cartItems');
   } catch (err) {
     dispatch({
       type: ORDER_CREATE_FAIL,
@@ -62,8 +62,6 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
       type: ORDER_DETAILS_SUCCESS,
       payload: data,
     });
-
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
   } catch (err) {
     dispatch({
       type: ORDER_DETAILS_FAIL,
@@ -93,8 +91,6 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
       type: ORDER_PAY_SUCCESS,
       payload: data,
     });
-
-    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
   } catch (err) {
     dispatch({
       type: ORDER_PAY_FAIL,
