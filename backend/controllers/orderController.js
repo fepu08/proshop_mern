@@ -51,7 +51,7 @@ export default class OrderController {
   }
 
   // @desc    Update order to paid
-  // @route   GET /api/orders/:id/pay
+  // @route   PUT /api/orders/:id/pay
   // @access  Private
   static async updateOrderToPaid(req, res, next) {
     try {
