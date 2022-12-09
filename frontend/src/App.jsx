@@ -18,7 +18,7 @@ function App() {
     <Router>
       <Header />
       <main className="py-3">
-        <Container fluid>
+        <Container>
           <Routes>
             <Route path="/" element={<HomeScreen />} />
             <Route path="/product/:id" element={<ProductScreen />} />

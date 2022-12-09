@@ -78,4 +78,17 @@ export default class OrderController {
       return next(err);
     }
   }
+
+  // @desc    Get logged in user orders
+  // @route   GET /api/orders/myorders
+  // @access  Private
+  static async getUserOrders(req, res, next) {
+    try {
+      const orders = await Order.find({ user: req.user._id });
+
+      res.json(orders);
+    } catch (err) {
+      return next(err);
+    }
+  }
 }
