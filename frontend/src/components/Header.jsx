@@ -32,7 +32,7 @@ const Header = () => {
                 &nbsp;Cart
               </Nav.Link>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username">
+                <NavDropdown title={userInfo.name} style={{ marginRight: 0 }} id="username">
                   <NavDropdown.Item as={NavLink} to="profile">
                     Profile
                   </NavDropdown.Item>
@@ -44,6 +44,21 @@ const Header = () => {
                   <i className="fas fa-user" />
                   &nbsp;Sign In
                 </Nav.Link>
+              )}
+              {userInfo && userInfo.isAdmin && (
+                <NavDropdown title="Admin" style={{ marginRight: 0 }} id="adminmenu">
+                  <NavDropdown.Item as={NavLink} to="/admin/userlist">
+                    Users
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item as={NavLink} to="/admin/productlist">
+                    Products
+                  </NavDropdown.Item>
+
+                  <NavDropdown.Item as={NavLink} to="/admin/orderlist">
+                    Orders
+                  </NavDropdown.Item>
+                </NavDropdown>
               )}
             </Nav>
           </Navbar.Collapse>
