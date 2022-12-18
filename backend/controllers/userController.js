@@ -127,4 +127,23 @@ export default class UserController {
       return next(err);
     }
   }
+
+  // @desc    Delete user
+  // @route   DELETE /api/users/:id
+  // @access  Private/Admin
+  static async deleteUser(req, res, next) {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (user) {
+        await user.remove();
+        res.status(200).json({ message: 'User removed' });
+      } else {
+        res.status(404);
+        throw new Error('User not found');
+      }
+    } catch (err) {
+      return next(err);
+    }
+  }
 }
