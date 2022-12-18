@@ -146,4 +146,51 @@ export default class UserController {
       return next(err);
     }
   }
+
+  // @desc    Get user by id
+  // @route   GET /api/users/:id
+  // @access  Private/Admin
+  static async getUserById(req, res, next) {
+    try {
+      const user = await User.findById(req.params.id).select('-password');
+
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(404);
+        throw new Error('User not found');
+      }
+    } catch (err) {
+      return next(err);
+    }
+  }
+
+  // @desc    Update user
+  // @route   PUT /api/users/:id
+  // @access  Private/Admin
+  static async updateUser(req, res, next) {
+    try {
+      const user = await User.findById(req.params.id);
+
+      if (user) {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.isAdmin = req.body.isAdmin === undefined ? user.isAdmin : req.body.isAdmin;
+
+        const updatedUser = await user.save();
+
+        res.status(200).json({
+          _id: updatedUser._id,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          isAdmin: updatedUser.isAdmin,
+        });
+      } else {
+        res.status(404);
+        throw new Error('User not found');
+      }
+    } catch (err) {
+      return next(err);
+    }
+  }
 }
